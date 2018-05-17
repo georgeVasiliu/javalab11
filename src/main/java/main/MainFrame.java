@@ -12,11 +12,13 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("Swing Designer");
+        controlPanel = new ControlPanel(this);
+        designPanel = new DesignPanel(this);
         init();
     }
 
     public static void main(String[] args) {
-
+        MainFrame m = new MainFrame();
     }
 
     private void init() {
@@ -25,6 +27,7 @@ public class MainFrame extends JFrame {
         getContentPane().add(controlPanel, BorderLayout.NORTH);
         getContentPane().add(designPanel, BorderLayout.CENTER);
         pack();
+        this.setVisible(true);
     }
 
 }

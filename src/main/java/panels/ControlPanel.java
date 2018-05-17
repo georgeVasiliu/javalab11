@@ -1,9 +1,11 @@
 package panels;
 
 import main.MainFrame;
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
 import reflect.ReflectUtils;
 
 import javax.swing.*;
+import java.lang.reflect.Field;
 
 public class ControlPanel extends JPanel {
     private final MainFrame frame;
@@ -48,6 +50,14 @@ public class ControlPanel extends JPanel {
     }
 
     private void setComponentText(JComponent comp, String text) {
-
+        try
+        {
+            ReflectUtils.setInstanceText(comp,text);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Failed to set default text.");
+            e.printStackTrace();
+        }
     }
 }
