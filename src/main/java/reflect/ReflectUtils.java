@@ -1,10 +1,8 @@
 package reflect;
 
 
-import javax.swing.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.Locale;
 
 public class ReflectUtils {
 
@@ -19,20 +17,30 @@ public class ReflectUtils {
         return targetClass.getDeclaredConstructor().newInstance();
     }
 
-    public static void setInstanceText(JComponent comp, String text) throws Exception
-    {
+    public static boolean setTextOnComponent(Object instance, String textToSet) {
 
-        System.out.println("Loading for " + comp.getName());
-        Class<?> c = Class.forName(comp.getName());
-        Object t = c.newInstance();
-        Method[] methods = comp.getClass().getMethods();
-        for (Method m :methods)
-        {
-            if (m.getName().equalsIgnoreCase("setText"))
+        Class<?> cls = instance.getClass();
+        String methodName = "setText";
+        Method method = null;
+        try {
+            method = instance.getClass().getMethod(methodName, String.class);
+        } catch (Exception e) {
+            System.out.println("Method not found.Not able to set text");
+            return false;
+        }
+
+        if (method != null) {
+            method.setAccessible(true);
+            try {
+                method.invoke(instance, textToSet);
+            } catch (Exception e)
             {
-                m.setAccessible(true);
-                Object object = m.invoke(t,text);
+                System.out.println("Method call fail");
+                e.printStackTrace();
+                return false;
             }
         }
+
+        return true;
     }
 }
