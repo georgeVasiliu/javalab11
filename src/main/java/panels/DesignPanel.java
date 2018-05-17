@@ -28,10 +28,16 @@ public class DesignPanel extends JPanel {
             comp.setToolTipText(comp.getClass().getName());
             this.add(comp);
             frame.repaint();
+            frame.addObject(comp);
         }
         catch (NullPointerException e)
         {
             System.out.println("Null dynamic object!");
         }
+    }
+
+    public void addFixedComponent(JComponent comp) {
+        this.add(comp);
+        frame.repaint();
     }
 }
