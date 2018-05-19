@@ -2,6 +2,7 @@ package main;
 
 import panels.ControlPanel;
 import panels.DesignPanel;
+import panels.PropViewer;
 import panels.SerializerView;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class MainFrame extends JFrame {
     public ControlPanel controlPanel;
     public DesignPanel designPanel;
     public SerializerView serializerView;
+    public PropViewer propViewer;
     public String XML_FILE = "out.xml";
 
     ArrayList<JComponent> objects = new ArrayList<>();
@@ -27,6 +29,7 @@ public class MainFrame extends JFrame {
         controlPanel = new ControlPanel(this);
         designPanel = new DesignPanel(this);
         serializerView = new SerializerView(this);
+        propViewer = new PropViewer(this);
         init();
     }
 
@@ -40,6 +43,7 @@ public class MainFrame extends JFrame {
         getContentPane().add(controlPanel, BorderLayout.NORTH);
         getContentPane().add(designPanel, BorderLayout.CENTER);
         getContentPane().add(serializerView, BorderLayout.SOUTH);
+        getContentPane().add(propViewer, BorderLayout.EAST);
         pack();
         this.setVisible(true);
     }
