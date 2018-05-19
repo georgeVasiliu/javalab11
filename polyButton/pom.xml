@@ -41,7 +41,6 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>main.MainFrame</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
