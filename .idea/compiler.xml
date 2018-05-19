@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="comreflectlab11" />
-        <module name="Lab11" />
+        <module name="polyButton" />
       </profile>
     </annotationProcessing>
   </component>
