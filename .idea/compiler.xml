@@ -7,8 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="comreflectlab11" />
-        <module name="polyButton" />
+        <module name="Lab11" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="polyButton" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

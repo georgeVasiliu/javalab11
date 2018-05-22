@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
     public PropViewer propViewer;
     public String XML_FILE = "out.xml";
 
-    ArrayList<JComponent> objects = new ArrayList<>();
+    public ArrayList<JComponent> objects = new ArrayList<>();
 
     public MainFrame() {
         super("Swing Designer");
@@ -30,8 +30,10 @@ public class MainFrame extends JFrame {
         designPanel = new DesignPanel(this);
         serializerView = new SerializerView(this);
         propViewer = new PropViewer(this);
+
         init();
     }
+
 
     public static void main(String[] args) {
         MainFrame m = new MainFrame();
@@ -76,6 +78,7 @@ public class MainFrame extends JFrame {
             designPanel.addFixedComponent(o);
         }
     }
+
 
     public void addObject(JComponent comp) {
         objects.add(comp);

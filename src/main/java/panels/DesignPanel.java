@@ -1,9 +1,12 @@
 package panels;
 
+
 import main.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
 public class DesignPanel extends JPanel {
@@ -14,6 +17,35 @@ public class DesignPanel extends JPanel {
         this.frame = frame;
         setPreferredSize(new Dimension(W, H));
         setLayout(null);
+
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                Object obj = e.getSource();
+                System.out.println(obj.toString());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
 
     public void addAtRandomLocation(JComponent comp) {
