@@ -18,10 +18,9 @@ public class DesignPanel extends JPanel {
         setPreferredSize(new Dimension(W, H));
         setLayout(null);
 
-        this.addMouseListener(new MouseListener() {
+   /*     this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 Object obj = e.getSource();
                 System.out.println(obj.toString());
             }
@@ -45,7 +44,7 @@ public class DesignPanel extends JPanel {
             public void mouseExited(MouseEvent e) {
 
             }
-        });
+        });*/
     }
 
     public void addAtRandomLocation(JComponent comp) {
@@ -58,12 +57,12 @@ public class DesignPanel extends JPanel {
             int h = comp.getPreferredSize().height;
             comp.setBounds(x, y, w, h);
             comp.setToolTipText(comp.getClass().getName());
+            comp.setFocusable(true);
+            comp.addMouseListener(new CustomMouseAdapter());
             this.add(comp);
             frame.repaint();
             frame.addObject(comp);
-        }
-        catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             System.out.println("Null dynamic object!");
         }
     }
