@@ -44,6 +44,17 @@ public class ControlPanel extends JPanel {
                 SwingUtilities.invokeLater(() -> errorLabel.setVisible(true));
             }
         }
+
+        if (object == null) {
+            try {
+                Object loadedObj = ReflectUtils.getInstanceFromJar("/Users/cojocarudragos/PA/privateButton/target/privateButton-1.0-SNAPSHOT.jar", className);
+                object = loadedObj;
+            } catch (Exception e) {
+                System.out.println("failed to load button from jar.");
+                e.printStackTrace();
+            }
+        }
+
         return (JComponent) object;
     }
 
