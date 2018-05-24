@@ -9,9 +9,9 @@ import java.awt.*;
 
 
 public class PropViewer extends JPanel {
-    MainFrame frame;
-    JTable table;
-    Object[] dummy = {"Object", "X", "Y", "Property"};
+    static MainFrame frame;
+    static JTable table;
+    static Object[] dummy = {"Object", "X", "Y", "Property"};
 
     public PropViewer(MainFrame frame) {
         this.frame = frame;
@@ -51,11 +51,12 @@ public class PropViewer extends JPanel {
         }
     }
 
-    public void describeComponent(Object[] desc) {
+    static public void describeComponent(Object[] desc) {
         try {
             Object[] props = {desc[0], desc[1], desc[2], desc[3]};
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.addRow(props);
+            frame.repaint();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Need 4 arguments for table insert");
             e.printStackTrace();

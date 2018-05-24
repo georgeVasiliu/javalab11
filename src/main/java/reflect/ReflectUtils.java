@@ -1,6 +1,7 @@
 package reflect;
 
 
+import javax.swing.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
@@ -42,5 +43,34 @@ public class ReflectUtils {
         }
 
         return true;
+    }
+
+    public static Object[] getProps(JComponent comp) {
+        Object[] props = new Object[4];
+        Class<?> cls = comp.getClass();
+        String[] propsNames = {"getX", "getY", "getText"};
+        Method method = null;
+        props[0] = cls.getSimpleName();
+
+        for (int i = 1; i < 4; i++)
+            try {
+                method = cls.getMethod(propsNames[i - 1]);
+                if (method != null) {
+                    try {
+                        method.setAccessible(true);
+                        if (i == 3)
+                            props[i] = (String) method.invoke(comp);
+                        else {
+                            props[i] = (Integer) method.invoke(comp);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (NoSuchMethodException e) {
+                System.out.println("No such method");
+            }
+
+        return props;
     }
 }

@@ -5,8 +5,6 @@ import main.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Random;
 
 public class DesignPanel extends JPanel {
@@ -58,7 +56,7 @@ public class DesignPanel extends JPanel {
             comp.setBounds(x, y, w, h);
             comp.setToolTipText(comp.getClass().getName());
             comp.setFocusable(true);
-            comp.addMouseListener(new CustomMouseAdapter());
+            comp.addMouseListener(new CustomMouseAdapter(comp));
             this.add(comp);
             frame.repaint();
             frame.addObject(comp);
