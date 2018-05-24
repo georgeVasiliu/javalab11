@@ -1,11 +1,28 @@
 package reflect;
 
 
+import main.MainFrame;
+
 import javax.swing.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 public class ReflectUtils {
+
+    public static Object getInstanceFromJar(String pathToJar, String className, Object[] constructorArguments, Class<?>... constructorTypes) throws Exception {
+        URLClassLoader classLoader = new URLClassLoader(new URL[]{new URL("file:///" + pathToJar)}, MainFrame.class.getClassLoader());
+        Class<?> targetClass = Class.forName(className, true, classLoader);
+        Constructor<?> targetConstructor = targetClass.getConstructor(constructorTypes);
+        return targetConstructor.newInstance(constructorArguments);
+    }
+
+    public static Object getInstanceFromJar(String pathToJar, String className) throws Exception {
+        URLClassLoader classLoader = new URLClassLoader(new URL[]{new URL("file:///" + pathToJar)}, MainFrame.class.getClassLoader());
+        Class<?> targetClass = Class.forName(className, true, classLoader);
+        return targetClass.getDeclaredConstructor().newInstance();
+    }
 
     public static Object getInstanceOf(String className, Object[] constructorArguments, Class<?>... constructorTypes) throws Exception {
         Class<?> targetClass = Class.forName(className);
@@ -34,8 +51,7 @@ public class ReflectUtils {
             method.setAccessible(true);
             try {
                 method.invoke(instance, textToSet);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Method call fail");
                 e.printStackTrace();
                 return false;
